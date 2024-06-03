@@ -8,7 +8,7 @@ app.config['CORS_HEADERS'] = 'Content-Type'
 @app.route('/todo', methods=['GET'])
 @cross_origin()
 def get_data():
-    data = {"todo": ["Eat", "Sleep", "Party"]}
+    data = {"todo": [""]}
     return jsonify(data)
 
 @app.route('/example', methods=['GET'])

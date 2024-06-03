@@ -1,9 +1,6 @@
-import { PersonalVideoRounded } from '@mui/icons-material';
-import React, { Dispatch, SetStateAction, useState } from 'react';
+import React, { Dispatch, SetStateAction } from 'react';
 import { DragDropContext, Droppable, Draggable, DropResult } from 'react-beautiful-dnd';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { Box, Stack } from '@mui/system';
-import { Typography } from '@mui/material';
+import { Stack } from '@mui/system';
 import Button from '@mui/material/Button';
 import { css } from '@emotion/css'
 import '@fontsource/roboto/300.css';
@@ -12,10 +9,10 @@ import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
 import DeleteIcon from '@mui/icons-material/Delete';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
-import { lime, purple } from '@mui/material/colors';
-import PlaylistAddCheckOutlinedIcon from '@mui/icons-material/PlaylistAddCheckOutlined';
 import IconButton from '@mui/material/IconButton';
 import EditIcon from '@mui/icons-material/Edit';
+import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
+import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
 
 interface TodoProp{
     item: string;
@@ -108,7 +105,8 @@ return (
             }}>
                 <EditIcon/>
             </IconButton>
-            {(index !== 0) && <button onClick = {(event)=> {
+            {(index !== 0) && <Button startIcon ={<ArrowUpwardIcon/>}
+             onClick = {(event)=> {
             let newTodo = [...todo];
             if(index===0){
                 return;
@@ -117,8 +115,10 @@ return (
             newTodo.splice(index-1, 1, value);
             newTodo.splice(index, 1, prevItem);
             setTodo(newTodo);
-            }}>Up</button>}
-            {(index !== todo.length-1) && <button onClick = {(event)=> {
+            }}></Button>}
+            {(index !== todo.length-1) && <Button
+            startIcon ={<ArrowDownwardIcon/>}
+            onClick = {(event)=> {
             let newTodo = [...todo];
             if(index===todo.length-1){
                 return;
@@ -127,7 +127,7 @@ return (
             newTodo.splice(index+1, 1, value);
             newTodo.splice(index, 1, nextItem);
             setTodo(newTodo);
-            }}>Down</button>} 
+            }}></Button>} 
             </div>
         </li>
             )}
